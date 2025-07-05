@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>“我”的使用说明书 - Self Manual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+         :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: #f5f7ff;
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .content-container {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .preview-section {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary-light);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 15px;
+        }
+        
+        .tab-btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: #f1f5f9;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .preview-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        
+        .preview-item {
+            margin-bottom: 20px;
+        }
+        
+        .preview-item h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .preview-item p {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .manual-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .completion {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            flex: 1;
+            background: #e2e8f0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .last-saved {
+            color: var(--gray);
+        }
+        
+        .instructions {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+        
+        .instructions h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .instructions ul {
+            padding-left: 25px;
+        }
+        
+        .instructions li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        @media (max-width: 768px) {
+            .content-container {
+                flex-direction: column;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-open"></i> “我”的使用说明书 </h1>
+
+            <div class="actions">
+                <button class="btn btn-primary" id="saveTxtBtn">
+                    <i class="fas fa-file-alt"></i> 保存为TXT
+                </button>
+                <button class="btn btn-primary" id="saveImageBtn">
+                    <i class="fas fa-image"></i> 保存为图片
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i> 重置表单
+                </button>
+                <button class="btn btn-success" id="saveDataBtn">
+                    <i class="fas fa-save"></i> 保存数据
+                </button>
+            </div>
+        </header>
+
+        <div class="intro-text">
+            亲爱的“我”： <br>这是一份专属于你的「使用说明书」。 <br> 我们总在探索世界，却常忘记聆听自己的声音。 <br>这份说明书不是冰冷的问卷，而是一面镜子，映照出你独特的存在：你的身体如何呼吸，情绪如何流动，价值观如何扎根，灵魂如何向往自由。 <br>填写它，不是为了定义“完美的我”，而是为了在混沌中厘清脉络： <br> 当迷茫时，你能快速调用自己的“能量补给指南”； <br>当决策时，你能锚定价值观而非随波逐流；
+            <br> 当疲惫时，你知道如何用最适配的方式修复自己。 <br> 愿你在书写中，与真实自我赤诚相见。
+        </div>
+
+        <div class="content-container">
+            <div class="form-section">
+                <h2 class="section-title"><i class="fas fa-edit"></i> 填写"我"的说明书</h2>
+
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="basic">基础信息</button>
+                    <button class="tab-btn" data-tab="personality">性格特征</button>
+                    <button class="tab-btn" data-tab="preferences">个人偏好</button>
+                    <button class="tab-btn" data-tab="values">价值观</button>
+                    <button class="tab-btn" data-tab="goals">目标成长</button>
+                    <button class="tab-btn" data-tab="life">生活管理</button>
+                    <button class="tab-btn" data-tab="friends">社交互动</button>
+                </div>
+
+                <div class="tab-content active" id="basic-tab">
+                    <div class="form-group">
+                        <label for="height">身高 (cm)</label>
+                        <input type="number" id="height" placeholder="例如：175">
+                        <label for="weight">体重 (kg)</label>
+                        <input type="number" id="weight" placeholder="例如：65">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skinColor">肤色</label>
+                        <input type="text" id="skinColor" placeholder="例如：冷白皮">
+                        <label for="skinType">肤质类型</label>
+                        <select id="skinType">
+                            <option value="">请选择肤质类型</option>
+                            <option value="油性">油性</option>
+                            <option value="干性">干性</option>
+                            <option value="混合性">混合性</option>
+                            <option value="敏感性">敏感性</option>
+                        </select>
+                        <label for="skinImpot">护理重点</label>
+                        <input type="text" id="skinImpot" placeholder="例如：不涂防晒霜">
+                        <label for="skinSkincare">常用护肤品</label>
+                        <input type="text" id="skinSkincare" placeholder="例如：青蛙王子">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hairstyle">凸显气质的发型/发色</label>
+                        <input type="text" id="hairstyle" placeholder="例如：短发，黑色">
+                        <label for="hairstyle-n">需要避免的发型/发色</label>
+                        <input type="text" id="hairstyle-n" placeholder="例如：长发，蓝色">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body"> 自信的身体部位</label>
+                        <input type="text" id="body" placeholder="例如：手臂">
+                        <label for="body-d">不自信的身体部位</label>
+                        <input type="text" id="body-d" placeholder="例如：脚">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sleep">每日所需睡眠 (小时)</label>
+                        <input type="number" id="sleep" placeholder="例如：7.5">
+                        <label for="rest">每日所需休息 (小时)</label>
+                        <input type="number" id="rest" placeholder="例如：3.5">
+                        <label for="food-n">过敏/忌口食物</label>
+                        <input type="text" id="food-n" placeholder="例如：芒果">
+                        <label for="thing">依赖的事物</label>
+                        <input type="text" id="thing" placeholder="例如：糖">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sickness">身体欠佳情况</label>
+                        <input type="text" id="sickness" placeholder="例如：咽炎/散光">
+                        <label for="drugs">过敏药物</label>
+                        <input type="text" id="drugs" placeholder="例如：头孢">
+                        <label for="cases">体检频率</label>
+                        <input type="text" id="cases" placeholder="例如：一年一次">
+                        <label for="fitness">健身/养生习惯具体项目</label>
+                        <input type="text" id="fitness" placeholder="例如：跑步">
+                        <label for="health">药物依赖或需定期服用的保健品</label>
+                        <input type="text" id="health" placeholder="例如：褪黑素">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthday">生日</label>
+                        <input type="date" id="birthday">
+                        <label for="merit">自信的闪光点</label>
+                        <input type="text" id="merit" placeholder="例如：认路很快">
+                        <label for="fav">最喜欢</label>
+                        <input type="text" id="fav" placeholder="例如：购物">
+                        <label for="lifestyle">喜欢的生活方式</label>
+                        <input type="text" id="lifestyle" placeholder="例如：沉浸工作">
+                        <label for="diary">记录自己的方式</label>
+                        <input type="text" id="diary" placeholder="例如：日记">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="personality-tab">
+                    <div class="form-group">
+                        <label for="strengths">你的擅长</label>
+                        <textarea id="strengths" placeholder="例如：共情能力强"></textarea>
+                        <label for="appraise">他人形容</label>
+                        <textarea id="appraise" placeholder="例如：很细心"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weaknesses">需要改善的</label>
+                        <textarea id="weaknesses" placeholder="例如：容易拖延"></textarea>
+                        <label for="shortcoming-s">性格缺点/缺陷（自认为）</label>
+                        <textarea id="shortcoming-s" placeholder="例如：走神"></textarea>
+                        <label for="shortcoming-o">性格缺点/缺陷（他人认为）</label>
+                        <textarea id="shortcoming-o" placeholder="例如：做事慢"></textarea>
+                        <label for="occasion">需避免的场景/场合</label>
+                        <textarea id="occasion" placeholder="例如：嘈杂环境"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="energySource">情绪恢复</label>
+                        <textarea id="energySource" placeholder="例如：如撸猫/听摇滚"></textarea>
+                        <label for="energyrecovery">充电方式</label>
+                        <textarea id="energyrecovery" placeholder="例如：独处"></textarea>
+                        <label for="accompany">需要陪伴</label>
+                        <textarea id="accompany" placeholder="例如：小动物/朋友"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pressure">遇到压力时</label>
+                        <input type="text" id="pressure" placeholder="例如：逃避/生气">
+                        <label for="angry">生气的类型</label>
+                        <input type="text" id="angry" placeholder="例如：生自己/他人的气">
+                        <label for="remarks">容易让自己生气的话</label>
+                        <input type="text" id="remarks" placeholder="例如：你做不到">
+                        <label for="angry-thing">会因什么事情生气</label>
+                        <input type="text" id="angry-thing" placeholder="例如：内向, 理性, 忠诚">
+                        <label for="sad-thing">会因什么事情难过</label>
+                        <input type="text" id="sad-thing" placeholder="性格类型">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ease">生气/难过时的缓解方式</label>
+                        <input type="text" id="ease" placeholder="例如：内向, 理性, 忠诚">
+                        <label for="tool">压力管理的具体工具</label>
+                        <input type="text" id="tool" placeholder="性格类型">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="example">近期最成功的一次情绪控制案例</label>
+                        <input type="text" id="example" placeholder="例如：内向, 理性, 忠诚">
+                        <label for="lesson">过去因性格缺陷导致的教训</label>
+                        <input type="text" id="lesson" placeholder="性格类型">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="preferences-tab">
+                    <div class="form-group">
+                        <label for="style">舒适穿搭风格</label>
+                        <input type="text" id="style" placeholder="例如：简约休闲，略带复古">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="favFood">最爱的食物</label>
+                        <input type="text" id="favFood" placeholder="例如：日式拉面，黑巧克力">
+                        <label for="avoidFood">坚决不吃的食物</label>
+                        <input type="text" id="avoidFood" placeholder="例如：香菜，动物内脏">
+                        <label for="typeofcuisine">料理类型</label>
+                        <input type="text" id="typeofcuisine" placeholder="例如：喜欢西餐/不喜欢韩餐">
+                        <label for="cooking">喜欢的做法</label>
+                        <input type="text" id="cooking" placeholder="例如：喜欢糖醋">
+                        <label for="cooking-d">不喜欢的做法</label>
+                        <input type="text" id="cooking-d" placeholder="例如：不喜欢油炸">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="favMusic">单曲循环</label>
+                        <input type="text" id="favMusic" placeholder="例如：稻香">
+                        <label for="haven">精神避风港</label>
+                        <input type="text" id="haven" placeholder="例如：宫崎骏的电影">
+                        <label for="heal">治愈自己的良药</label>
+                        <input type="text" id="heal" placeholder="例如：种花">
+                        <label for="receivingAndGiving">喜欢接受还是喜欢赠与</label>
+                        <input type="text" id="receivingAndGiving" placeholder="例如：被关心">
+                        <label for="hobbies">保持精神状态的小癖好</label>
+                        <input type="text" id="hobbies" placeholder="例如：喂流浪猫">
+                        <label for="gifts">想要收到什么礼物</label>
+                        <input type="text" id="gifts" placeholder="例如：手作礼物">
+                        <label for="giver">喜欢送别人什么礼物</label>
+                        <input type="text" id="giver" placeholder="例如：玩具/零食">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="musicStyle">喜欢的音乐风格/歌手</label>
+                        <textarea id="musicStyle" placeholder="例如：电影原声"></textarea>
+                        <label for="bookPref">书籍/影视偏好：（类型/代表作）</label>
+                        <textarea id="bookPref" placeholder="例如：历史小说/科幻电影"></textarea>
+                        <label for="favType">喜欢的类型</label>
+                        <textarea id="favType" placeholder="例如：温文艺"></textarea>
+                        <label for="createType">想自己创作的类型</label>
+                        <textarea id="createType" placeholder="例如：美丽"></textarea>
+                        <label for="heartThings">一眼就为之心动的事物</label>
+                        <textarea id="heartThings" placeholder="例如：帅哥"></textarea>
+                        <label for="belief">愿意相信的理念/玄学</label>
+                        <textarea id="belief" placeholder="例如：星座"></textarea>
+                        <label for="learnArt">一直想要学习的艺术</label>
+                        <textarea id="learnArt" placeholder="例如：爵士乐"></textarea>
+                        <label for="shareThings">想要与人分享的</label>
+                        <textarea id="shareThings" placeholder="例如：有趣的"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="indoorAct">喜欢的室内活动</label>
+                        <textarea id="indoorAct" placeholder="例如：瑜伽"></textarea>
+                        <label for="outdoorAct">喜欢的室外活动</label>
+                        <textarea id="outdoorAct" placeholder="例如：越野"></textarea>
+                        <label for="commonSport">最常做的运动</label>
+                        <textarea id="commonSport" placeholder="例如：八段锦"></textarea>
+                        <label for="wantSport">想做没能做成的运动/活动</label>
+                        <textarea id="wantSport" placeholder="例如：滑雪"></textarea>
+                        <label for="sportStyle">喜欢独自运动还是有运动搭子</label>
+                        <textarea id="sportStyle" placeholder="例如：搭子"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="relaxSmell">会放松的气味</label>
+                        <textarea id="relaxSmell" placeholder="例如：如雨后泥土/烘焙咖啡"></textarea>
+                        <label for="dislikeSmell">不喜欢的气味</label>
+                        <textarea id="dislikeSmell" placeholder="例如：如汽油晕车"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="efficiencyApp">常用的效率APP</label>
+                        <textarea id="efficiencyApp" placeholder="例如：Notion/番茄钟"></textarea>
+                        <label for="digitalEntertain">偏好的数字娱乐方式</label>
+                        <textarea id="digitalEntertain" placeholder="例如：游戏/播客/短视频平台"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studyMethod">适合的学习方法</label>
+                        <textarea id="studyMethod" placeholder="例如：动手"></textarea>
+                        <label for="focusTime">最能集中注意力的学习时间段</label>
+                        <textarea id="focusTime" placeholder="例如：清晨"></textarea>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="values-tab">
+                    <div class="form-group">
+                        <label for="motto">人生信条：坚持的原则</label>
+                        <input type="text" id="motto" placeholder="例如：成为更好的自己">
+                        <label for="fact">坚信的事实</label>
+                        <input type="text" id="fact" placeholder="例如：人生由我">
+                        <label for="behavior">喜好的行为偏向（理性/感性）</label>
+                        <input type="text" id="behavior" placeholder="例如：理性">
+                        <label for="proudThings">人生至今最自豪的3件事</label>
+                        <input type="text" id="proudThings" placeholder="例如：成为更好的自己">
+                        <label for="regretDecision">最想重来的1个决定及原因</label>
+                        <input type="text" id="regretDecision" placeholder="例如：成为更好的自己">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="friendship">交友原则</label>
+                        <textarea id="friendship" placeholder="例如：尊重边界"></textarea>
+                        <label for="notAccept">不接受</label>
+                        <textarea id="notAccept" placeholder="例如：隐瞒"></textarea>
+                        <label for="cherishQuality">珍视的品质</label>
+                        <textarea id="cherishQuality" placeholder="例如：真诚"></textarea>
+                        <label for="friendPref">交友偏向</label>
+                        <textarea id="friendPref" placeholder="例如：理性/感性/乐观/悲观/同学/同事/网友"></textarea>
+                        <label for="boundary">边界感</label>
+                        <textarea id="boundary" placeholder="例如：网友不问真实生活"></textarea>
+                        <label for="breakPrinciple">触犯即断绝关系的原则</label>
+                        <textarea id="breakPrinciple" placeholder="例如： 偷窃"></textarea>
+                        <label for="notTolerate">绝不能容忍的事情/人</label>
+                        <textarea id="notTolerate" placeholder="例如：不诚实"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="moneyView">金钱观</label>
+                        <textarea id="moneyView" placeholder="例如：够用就行/越多越好"></textarea>
+                        <label for="savingPercent">储蓄占比</label>
+                        <textarea id="savingPercent" placeholder="例如：储蓄30%，投资40%，消费30%"></textarea>
+                        <label for="spendPriority">消费优先级</label>
+                        <textarea id="spendPriority" placeholder="例如：衣食住行"></textarea>
+                        <label for="investPref">投资倾向</label>
+                        <textarea id="investPref" placeholder="例如：教育付费"></textarea>
+                        <label for="spendHabit">有什么不必要但必须花钱的小癖好</label>
+                        <textarea id="spendHabit" placeholder="例如：买零食"></textarea>
+                        <label for="premiumArea">愿意支付溢价的领域</label>
+                        <textarea id="premiumArea" placeholder="例如：有机食品"></textarea>
+                        <label for="worthInvest">最值得投资的3件东西</label>
+                        <textarea id="worthInvest" placeholder="例如：书/乐器/古玩"></textarea>
+                        <label for="notWorthSpend">最不愿意花钱的东西</label>
+                        <textarea id="notWorthSpend" placeholder="例如：运动器材"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="valueSort">核心价值排序</label>
+                        <input type="text" id="valueSort" placeholder="例如：健康> 家庭 > 成长 > 事业">
+                        <label for="lifeMeaning">人生终极命题/人生要追求的意义</label>
+                        <input type="text" id="lifeMeaning" placeholder="例如：自由/真理/爱">
+                        <label for="faith">信仰</label>
+                        <input type="text" id="faith" placeholder="例如：存在主义/虚无主义等等">
+                        <label for="beRemembered">希望如何被人记住</label>
+                        <input type="text" id="beRemembered" placeholder="例如：知名">
+                        <label for="moralLine">道德红线</label>
+                        <input type="text" id="moralLine" placeholder="例如：不理会有案底的人">
+                        <label for="tolerateThings">能包容的事情</label>
+                        <input type="text" id="tolerateThings" placeholder="例如：捡垃圾">
+                        <label for="noTolerate">坚决不能包容的事情</label>
+                        <input type="text" id="noTolerate" placeholder="例如：违法">
+                        <label for="ignoreThings">可以视而不见的事情</label>
+                        <input type="text" id="ignoreThings" placeholder="例如：虚伪">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="socialIssue">对社会议题的关注方向</label>
+                        <input type="text" id="socialIssue" placeholder="例如：环保/平权/教育">
+                        <label for="joinCharity">是否参与公益</label>
+                        <input type="text" id="joinCharity" placeholder="例如：是">
+                        <label for="charityForm">具体形式是</label>
+                        <input type="text" id="charityForm" placeholder="例如：福利院">
+                        <label for="helpWho">会帮助什么样的人</label>
+                        <input type="text" id="helpWho" placeholder="例如：善良">
+                        <label for="notHelpWho">不想帮助什么样的人</label>
+                        <input type="text" id="notHelpWho" placeholder="例如：不感恩">
+                        <label for="familyView">对亲情/婚姻/生育的核心态度</label>
+                        <input type="text" id="familyView" placeholder="例如：婚姻不必要">
+                        <label for="deathView">对死亡/命运/自由意志的看法</label>
+                        <input type="text" id="deathView" placeholder="例如：命运可改变">
+                        <label for="religion">是否有宗教信仰或精神寄托？</label>
+                        <input type="text" id="religion" placeholder="例如：是">
+                    </div>
+                </div>
+
+                <div class="tab-content" id="goals-tab">
+                    <div class="form-group">
+                        <label for="shortTermGoal">短期目标 (3-6个月)</label>
+                        <textarea id="shortTermGoal" placeholder="例如：学习Python基础"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="travelGoal">旅行目标 (3-6个月)</label>
+                        <textarea id="travelGoal" placeholder="例如：完成日本旅行"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="longTermPlace">长期愿景理想居住地</label>
+                        <textarea id="longTermPlace" placeholder="例如：居住在靠海的城市"></textarea>
+                        <label for="careerGoal">职业/生活状态目标</label>
+                        <textarea id="careerGoal" placeholder="例如：成为UX设计师"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weakAbility">当前能力短板</label>
+                        <input type="text" id="weakAbility" placeholder="例如：普通话不过关">
+                        <label for="learningSkill">正在学习的技能</label>
+                        <input type="text" id="learningSkill" placeholder="例如：数据分析">
+                        <label for="dailyRitual">每日仪式感小事</label>
+                        <input type="text" id="dailyRitual" placeholder="例如：拉开窗帘">
+                        <label for="flowState">心流状态领域</label>
+                        <input type="text" id="flowState" placeholder="例如：画画">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="avoidPerson">未来不想成为的人</label>
+                        <textarea id="avoidPerson" placeholder="例如：失去好奇心的人，人云亦云的人"></textarea>
+                        <label for="failureReview">失败复盘</label>
+                        <textarea id="failureReview" placeholder="例如：没有抓住机会"></textarea>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="life-tab">
+                    <div class="form-group">
+                        <label for="happyThings">最愉悦的事</label>
+                        <textarea id="happyThings" placeholder="例如：阅读/烹饪"></textarea>
+                        <label for="relaxPlace">享受/放松的环境/场所</label>
+                        <textarea id="relaxPlace" placeholder="例如：咖啡厅"></textarea>
+                        <label for="lifePace">喜欢的生活节奏</label>
+                        <textarea id="lifePace" placeholder="例如：清闲/忙碌"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stressSign">有压力的表现</label>
+                        <textarea id="stressSign" placeholder="例如：失眠"></textarea>
+                        <label for="restSign">压力过大需休息的症状</label>
+                        <textarea id="restSign" placeholder="例如：头痛"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="weeklyMust">每周必做</label>
+                        <input type="text" id="weeklyMust" placeholder="例如：运动3次/写日记">
+                        <label for="workScene">高效工作场景</label>
+                        <input type="text" id="workScene" placeholder="例如：咖啡馆/书房">
+                        <label for="travelType">放松旅行目的地特质</label>
+                        <input type="text" id="travelType" placeholder="例如：不同的环境">
+                        <label for="cityRequire">理想居住城市要素</label>
+                        <input type="text" id="cityRequire" placeholder="例如：美术馆密度/绿化率">
+                        <label for="unbearableEnv">无法忍受的居住缺陷</label>
+                        <input type="text" id="unbearableEnv" placeholder="例如：噪音大">
+                        <label for="socialScene">社交能量满格的场合</label>
+                        <input type="text" id="socialScene" placeholder="例如：小型聚会">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="timeDistribute">每日时间分配比例</label>
+                        <textarea id="timeDistribute" placeholder="例如：工作/学习/娱乐/休息"></textarea>
+                        <label for="useSchedule">是否使用日程表？具体工具是？</label>
+                        <textarea id="useSchedule" placeholder="例如：使用"></textarea>
+                        <label for="spendPercent">月度消费分类占比</label>
+                        <textarea id="spendPercent" placeholder="例如：饮食30%/学习20%"></textarea>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="friends-tab">
+                    <div class="form-group">
+                        <label for="commStyle">喜欢的沟通方式</label>
+                        <textarea id="commStyle" placeholder="例如：直率/委婉"></textarea>
+                        <label for="commType">喜欢沟通的类型</label>
+                        <textarea id="commType" placeholder="例如：温和的人"></textarea>
+                        <label for="socialFreq">可接受深度社交</label>
+                        <textarea id="socialFreq" placeholder="例如：一周一次"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dislikeBehavior">雷区提醒抵触行为</label>
+                        <textarea id="dislikeBehavior" placeholder="例如：近距离"></textarea>
+                        <label for="dislikeTopic">讨厌的话题</label>
+                        <textarea id="dislikeTopic" placeholder="例如：查户口"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactTime">希望朋友联系的时刻</label>
+                        <input type="text" id="contactTime" placeholder="例如：运动">
+                        <label for="distanceBehavior">触发疏离的行为</label>
+                        <input type="text" id="distanceBehavior" placeholder="例如：放鸽子">
+                        <label for="deepTopic">深度聊天话题</label>
+                        <input type="text" id="deepTopic" placeholder="例如：为什么喜欢某某">
+                        <label for="groupRole">群体中的角色</label>
+                        <input type="text" id="groupRole" placeholder="例如：破冰者/观察者">
+                        <label for="messageToSelf">最想对____时期的自己说</label>
+                        <input type="text" id="messageToSelf" placeholder="例如：">
+                        <label for="conflictStyle">面对人际矛盾时的解决风格</label>
+                        <input type="text" id="conflictStyle" placeholder="例如：主动沟通/冷处理">
+                        <label for="apologyWay">最希望他人如何向你道歉</label>
+                        <input type="text" id="apologyWay" placeholder="例如：礼物道歉">
+                        <label for="helpWho">遇到困难时通常会向谁求助</label>
+                        <input type="text" id="helpWho" placeholder="例如：朋友">
+                        <label for="supportRole">是否愿意担任他人的情绪支持者？</label>
+                        <input type="text" id="supportRole" placeholder="例如：是">
+                    </div>
+                </div>
+
+                <div class="status-bar">
+                    <div class="completion">
+                        <span>完成度</span>
+                        <div class="progress-bar">
+                            <div class="progress" id="progressBar"></div>
+                        </div>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="last-saved" id="lastSaved">尚未保存</div>
+                </div>
+            </div>
+
+            <div class="preview-section" id="previewSection">
+                <h2 class="section-title"><i class="fas fa-eye"></i> 说明书预览</h2>
+                <div class="preview-content" id="previewContent">
+                    <div class="preview-item">
+                        <h3><i class="fas fa-user"></i> 基础信息</h3>
+                        <p id="previewBasic">请填写左侧表单查看预览</p>
+                    </div>
+
+                    <div class="preview-item">
+                        <h3><i class="fas fa-brain"></i> 性格特征</h3>
+                        <p id="previewPersonality">请填写左侧表单查看预览</p>
+                    </div>
+
+                    <div class="preview-item">
+                        <h3><i class="fas fa-heart"></i> 个人偏好</h3>
+                        <p id="previewPreferences">请填写左侧表单查看预览</p>
+                    </div>
+
+                    <div class="preview-item">
+                        <h3><i class="fas fa-star"></i> 价值观</h3>
+                        <p id="previewValues">请填写左侧表单查看预览</p>
+                    </div>
+
+                    <div class="preview-item">
+                        <h3><i class="fas fa-bullseye"></i> 目标与成长</h3>
+                        <p id="previewGoals">请填写左侧表单查看预览</p>
+                    </div>
+                    <div class="preview-item">
+                        <h3><i class="fas fa-coffee"></i> 生活管理</h3>
+                        <p id="previewLife">请填写左侧表单查看预览</p>
+                    </div>
+                    <div class="preview-item">
+                        <h3><i class="fas fa-phone"></i> 社交互动</h3>
+                        <p id="previewFriends">请填写左侧表单查看预览</p>
+                    </div>
+                </div>
+
+                <div class="manual-footer">
+                    <p>自我使用说明书 | 最后更新: <span id="previewDate">未保存</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h2><i class="fas fa-info-circle"></i> 使用说明</h2>
+            <ul>
+                <li><strong>保存数据</strong>：点击"保存数据"按钮将信息存储在浏览器中</li>
+                <li><strong>导出文本</strong>：点击"保存为TXT"将说明书导出为文本文件</li>
+                <li><strong>导出图片</strong>：点击"保存为图片"将说明书导出为PNG图片</li>
+                <li><strong>重置表单</strong>：点击"重置表单"清空所有内容</li>
+                <li><strong>切换标签</strong>：点击顶部标签在不同部分之间切换</li>
+                <li><strong>自动保存</strong>：表单数据会实时更新预览区</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 引入所需库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有表单元素
+            const formInputs = document.querySelectorAll('input, textarea, select');
+            const tabs = document.querySelectorAll('.tab-btn');
+            const saveTxtBtn = document.getElementById('saveTxtBtn');
+            const saveImageBtn = document.getElementById('saveImageBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const saveDataBtn = document.getElementById('saveDataBtn');
+
+            // 加载保存的数据
+            loadSavedData();
+
+            // 设置标签切换功能
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // 移除所有active类
+                    tabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+                    // 添加active类到当前标签
+                    tab.classList.add('active');
+                    const tabId = tab.dataset.tab;
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+
+            // 为所有表单元素添加输入事件监听
+            formInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    // 当输入内容变化时，更新预览
+                    updatePreview();
+
+                    // 自动保存数据到本地存储
+                    autoSaveData();
+
+                    // 更新完成度
+                    updateCompletion();
+                });
+            });
+
+            // 保存为TXT
+            saveTxtBtn.addEventListener('click', saveAsTxt);
+
+            // 保存为图片
+            saveImageBtn.addEventListener('click', saveAsImage);
+
+            // 重置表单
+            resetBtn.addEventListener('click', resetForm);
+
+            // 保存数据到本地存储
+            saveDataBtn.addEventListener('click', saveData);
+
+            // 初始更新预览
+            updatePreview();
+
+            // 初始更新完成度
+            updateCompletion();
+        });
+
+        // 更新预览内容
+        function updatePreview() {
+            // 获取基础信息
+            const height = document.getElementById('height').value;
+            const weight = document.getElementById('weight').value;
+            const skinType = document.getElementById('skinType').value;
+            const hairstyle = document.getElementById('hairstyle').value;
+            const sleep = document.getElementById('sleep').value;
+            const skinColor = document.getElementById('skinColor').value;
+            const skinImpot = document.getElementById('skinImpot').value;
+            const skinSkincare = document.getElementById('skinSkincare').value;
+
+            // 更新基础信息预览
+            document.getElementById('previewBasic').innerHTML = `
+                <strong>身高:</strong> ${height || '未填写'} cm<br>
+                <strong>体重:</strong> ${weight || '未填写'} kg<br>
+                <strong>肤质:</strong> ${skinType || '未填写'}<br>
+                <strong>肤色:</strong> ${skinColor || '未填写'}<br>
+                <strong>发型:</strong> ${hairstyle || '未填写'}<br>
+                <strong>护理重点:</strong> ${skinImpot || '未填写'}<br>
+                <strong>常用护肤品:</strong> ${skinSkincare || '未填写'}<br>
+                <strong>每日睡眠:</strong> ${sleep || '未填写'} 小时
+            `;
+
+            // 获取性格特征
+            const strengths = document.getElementById('strengths').value;
+            const weaknesses = document.getElementById('weaknesses').value;
+            const energySource = document.getElementById('energySource').value;
+            const pressure = document.getElementById('pressure').value;
+            const angry = document.getElementById('angry').value;
+            const remarks = document.getElementById('remarks').value;
+
+            // 更新性格特征预览
+            document.getElementById('previewPersonality').innerHTML = `
+                <strong>优势:</strong> ${strengths || '未填写'}<br>
+                <strong>待改善:</strong> ${weaknesses || '未填写'}<br>
+                <strong>能量来源:</strong> ${energySource || '未填写'}<br>
+                <strong>压力反应:</strong> ${pressure || '未填写'}<br>
+                <strong>易怒类型:</strong> ${angry || '未填写'}<br>
+                <strong>触发言论:</strong> ${remarks || '未填写'}
+            `;
+
+            // 获取个人偏好
+            const style = document.getElementById('style').value;
+            const favFood = document.getElementById('favFood').value;
+            const avoidFood = document.getElementById('avoidFood').value;
+            const musicStyle = document.getElementById('musicStyle').value;
+
+            // 更新个人偏好预览
+            document.getElementById('previewPreferences').innerHTML = `
+                <strong>穿搭风格:</strong> ${style || '未填写'}<br>
+                <strong>最爱的食物:</strong> ${favFood || '未填写'}<br>
+                <strong>坚决不吃的食物:</strong> ${avoidFood || '未填写'}<br>
+                <strong>喜欢的音乐:</strong> ${musicStyle || '未填写'}
+            `;
+
+            // 获取价值观
+            const motto = document.getElementById('motto').value;
+            const friendship = document.getElementById('friendship').value;
+            const moneyView = document.getElementById('moneyView').value;
+            const valueSort = document.getElementById('valueSort').value;
+
+            // 更新价值观预览
+            document.getElementById('previewValues').innerHTML = `
+                <strong>人生信条:</strong> ${motto || '未填写'}<br>
+                <strong>交友原则:</strong> ${friendship || '未填写'}<br>
+                <strong>金钱观:</strong> ${moneyView || '未填写'}<br>
+                <strong>价值排序:</strong> ${valueSort || '未填写'}
+            `;
+
+            // 获取目标成长
+            const shortTermGoal = document.getElementById('shortTermGoal').value;
+            const travelGoal = document.getElementById('travelGoal').value;
+            const longTermPlace = document.getElementById('longTermPlace').value;
+            const careerGoal = document.getElementById('careerGoal').value;
+
+            // 更新目标成长预览
+            document.getElementById('previewGoals').innerHTML = `
+                <strong>短期目标:</strong> ${shortTermGoal || '未填写'}<br>
+                <strong>旅行目标:</strong> ${travelGoal || '未填写'}<br>
+                <strong>理想居住地:</strong> ${longTermPlace || '未填写'}<br>
+                <strong>职业目标:</strong> ${careerGoal || '未填写'}
+            `;
+
+            // 获取生活管理
+            const happyThings = document.getElementById('happyThings').value;
+            const relaxPlace = document.getElementById('relaxPlace').value;
+            const lifePace = document.getElementById('lifePace').value;
+            const stressSign = document.getElementById('stressSign').value;
+
+            // 更新生活管理预览
+            document.getElementById('previewLife').innerHTML = `
+                <strong>愉悦的事:</strong> ${happyThings || '未填写'}<br>
+                <strong>放松场所:</strong> ${relaxPlace || '未填写'}<br>
+                <strong>生活节奏:</strong> ${lifePace || '未填写'}<br>
+                <strong>压力表现:</strong> ${stressSign || '未填写'}
+            `;
+
+            // 获取社交互动
+            const commStyle = document.getElementById('commStyle').value;
+            const commType = document.getElementById('commType').value;
+            const socialFreq = document.getElementById('socialFreq').value;
+            const dislikeBehavior = document.getElementById('dislikeBehavior').value;
+
+            // 更新社交互动预览
+            document.getElementById('previewFriends').innerHTML = `
+                <strong>沟通方式:</strong> ${commStyle || '未填写'}<br>
+                <strong>沟通类型:</strong> ${commType || '未填写'}<br>
+                <strong>社交频率:</strong> ${socialFreq || '未填写'}<br>
+                <strong>抵触行为:</strong> ${dislikeBehavior || '未填写'}
+            `;
+
+            // 更新日期
+            document.getElementById('previewDate').textContent = new Date().toLocaleDateString();
+        }
+
+        // 计算并更新完成度
+        function updateCompletion() {
+            // 获取所有输入元素
+            const inputs = document.querySelectorAll('input, textarea, select');
+            let filledCount = 0;
+
+            // 遍历所有输入元素
+            inputs.forEach(input => {
+                // 检查输入元素是否有值（去除空格后）
+                if (input.value.trim() !== '') {
+                    filledCount++; // 增加已填写计数
+                }
+            });
+
+            // 计算完成百分比（四舍五入到整数）
+            const completion = Math.round((filledCount / inputs.length) * 100);
+
+            // 更新完成度文本显示
+            document.getElementById('progressText').textContent = `${completion}%`;
+
+            // 更新进度条宽度（使用CSS动画）
+            document.getElementById('progressBar').style.width = `${completion}%`;
+        }
+
+        // 保存为TXT文件
+        function saveAsTxt() {
+            const previewContent = document.getElementById('previewContent').innerText;
+            const blob = new Blob([previewContent], {
+                type: 'text/plain;charset=utf-8'
+            });
+            saveAs(blob, '我的使用说明书.txt');
+
+            showNotification('说明书已保存为TXT文件！', 'success');
+        }
+
+        // 保存为图片
+        function saveAsImage() {
+            html2canvas(document.getElementById('previewSection')).then(canvas => {
+                canvas.toBlob(blob => {
+                    saveAs(blob, '我的说明书.png');
+                    showNotification('说明书已保存为图片！', 'success');
+                });
+            });
+        }
+
+        // 重置表单
+        function resetForm() {
+            if (confirm('确定要重置所有内容吗？')) {
+                document.querySelectorAll('input, textarea, select').forEach(input => {
+                    input.value = '';
+                });
+                updatePreview();
+                localStorage.removeItem('selfManualData');
+                showNotification('表单已重置！', 'success');
+                document.getElementById('lastSaved').textContent = '尚未保存';
+            }
+        }
+
+        // 保存数据到本地存储
+        function saveData() {
+            const formData = {};
+
+            document.querySelectorAll('input, textarea, select').forEach(input => {
+                formData[input.id] = input.value;
+            });
+
+            localStorage.setItem('selfManualData', JSON.stringify(formData));
+            document.getElementById('lastSaved').textContent = '已保存: ' + new Date().toLocaleTimeString();
+            showNotification('数据已保存到浏览器！', 'success');
+        }
+
+        // 自动保存数据到本地存储
+        function autoSaveData() {
+            const formData = {};
+
+            document.querySelectorAll('input, textarea, select').forEach(input => {
+                formData[input.id] = input.value;
+            });
+
+            localStorage.setItem('selfManualData', JSON.stringify(formData));
+            document.getElementById('lastSaved').textContent = '自动保存: ' + new Date().toLocaleTimeString();
+        }
+
+        // 从本地存储加载数据
+        function loadSavedData() {
+            const savedData = localStorage.getItem('selfManualData');
+
+            if (savedData) {
+                const formData = JSON.parse(savedData);
+
+                for (const id in formData) {
+                    const input = document.getElementById(id);
+                    if (input) {
+                        input.value = formData[id];
+                    }
+                }
+
+                document.getElementById('lastSaved').textContent = '已加载保存的数据';
+                showNotification('已加载保存的数据！', 'success');
+            }
+        }
+
+        // 显示通知
+        function showNotification(message, type) {
+            // 移除已有的通知
+            const existingNotice = document.querySelector('.notification');
+            if (existingNotice) existingNotice.remove();
+
+            // 创建通知元素
+            const notice = document.createElement('div');
+            notice.className = `notification ${type}`;
+            notice.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                ${message}
+            `;
+
+            // 添加到页面
+            document.body.appendChild(notice);
+
+            // 3秒后移除
+            setTimeout(() => {
+                notice.style.opacity = '0';
+                setTimeout(() => notice.remove(), 300);
+            }, 3000);
+
+            // 添加样式
+            const style = document.createElement('style');
+            style.textContent = `
+                .notification {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    padding: 15px 25px;
+                    border-radius: 12px;
+                    color: white;
+                    font-weight: 600;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    z-index: 1000;
+                    opacity: 1;
+                    transition: opacity 0.3s ease;
+                }
+                
+                .success {
+                    background: var(--success);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    </script>
+</body>
+
+</html>
