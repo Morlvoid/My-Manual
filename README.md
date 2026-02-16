@@ -1,48 +1,73 @@
-# My-Manual--"我"的使用说明书
+# React + TypeScript + Vite
 
-一个帮助您创建个性化使用说明书的网页应用，通过深入了解自己的性格、偏好、价值观和目标，实现更好的自我认知与成长管理。<br>
-链接：<a>http://manual.morlvoid.pro/<a>
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 项目介绍
- 亲爱的“我”： <br>这是一份专属于你的「使用说明书」。 <br> 我们总在探索世界，却常忘记聆听自己的声音。 <br>这份说明书不是冰冷的问卷，而是一面镜子，映照出你独特的存在：你的身体如何呼吸，情绪如何流动，价值观如何扎根，灵魂如何向往自由。 <br>填写它，不是为了定义“完美的我”，而是为了在混沌中厘清脉络： <br> 当迷茫时，你能快速调用自己的“能量补给指南”； <br>当决策时，你能锚定价值观而非随波逐流；
-            <br> 当疲惫时，你知道如何用最适配的方式修复自己。 <br> 愿你在书写中，与真实自我赤诚相见。
+Currently, two official plugins are available:
 
-## 功能特点
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-- **全面自我认知**：涵盖基础信息、性格特征、个人偏好、价值观、目标成长、生活管理和社交互动7大维度
-- **实时预览**：填写表单时右侧实时生成说明书预览
-- **数据持久化**：自动保存数据到浏览器本地存储
-- **多格式导出**：支持导出为TXT文本或PNG图片
-- **进度追踪**：实时计算并显示表单完成百分比
-- **响应式设计**：完美适配桌面和移动设备
+## React Compiler
 
-## 使用指南
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-1. 打开应用后，从"基础信息"开始填写
-2. 通过顶部标签在不同部分之间切换
-3. 右侧预览区会实时显示您填写的内容
-4. 使用底部功能按钮：
-   - **保存数据**：手动保存到浏览器
-   - **保存为TXT**：导出为文本文件
-   - **保存为图片**：导出为PNG图片
-   - **重置表单**：清空所有内容
+## Expanding the ESLint configuration
 
-## 技术栈
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-- **前端**：HTML5, CSS3, JavaScript
-- **UI框架**：原生CSS (Flexbox/Grid布局)
-- **第三方库**：
-  - [html2canvas](https://html2canvas.hertzen.com/) - 将HTML转为图片
-  - [FileSaver.js](https://github.com/eligrey/FileSaver.js/) - 文件保存功能
-  - [Font Awesome](https://fontawesome.com/) - 图标库
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 贡献指南
-欢迎贡献！请遵循以下步骤：
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-Fork项目仓库
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-创建新分支 (git checkout -b feature/your-feature)
-提交更改 (git commit -am 'Add some feature')
-推送到分支 (git push origin feature/your-feature)
-创建Pull Request
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
